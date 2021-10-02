@@ -1,32 +1,19 @@
-version: '3.8'
+version: '3'
 
 services:
-  nginx:
-    depends_on:
-      - api
-      - client
-    restart: always
+  server:
     build:
-      dockerfile: Dockerfile
-      context: ./nginx
+      context: ./server
+      dockerfile: ./Dockerfile
+    image: 'jeevakalaiselvam/steamtrackerserver'
     ports:
-      - '3050:80'
-
-  api:
-    build:
-      dockerfile: Dockerfile
-      context: './server'
-    volumes:
-      - /app/node_modules
-      - ./server:/app
-
+      - '8000:8000'
   client:
-    stdin_open: true
-    environment:
-      - CHOKIDAR_USEPOLLING=true
     build:
-      dockerfile: Dockerfile
       context: ./client
-    volumes:
-      - /app/node_modules
-      - ./client:/app
+      dockerfile: ./Dockerfile
+    image: 'jeevakalaiselvam/steamtrackerclient'
+    ports:
+      - '3000:3000'
+    links:
+      - 'server:be'

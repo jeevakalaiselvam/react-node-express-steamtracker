@@ -81,5 +81,5 @@ setInterval(() => {
   refreshDatabaseAndStore();
 }, 1000 * 60 * 60);
 
-const PORT = 3001;
+const PORT = 8000;
 app.listen(PORT, () => LOG(`Listening on port ${PORT} 👋`));
