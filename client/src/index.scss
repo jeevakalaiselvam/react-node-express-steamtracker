@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cabin", sans-serif;
+  background-color: black;
+  background: url("https://static.completionist.me/images/velvet/bg.png");
+  color: #959da6;
+  scrollbar-width: thin;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+.scrollBar {
+  //Needed for Mozilla when applying overflow:scroll or auto
+  scrollbar-width: none;
+}
+::-webkit-scrollbar {
+  //Needed for Chrome and Safari
+  width: 0px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+  -webkit-border-radius: 6px;
+}
