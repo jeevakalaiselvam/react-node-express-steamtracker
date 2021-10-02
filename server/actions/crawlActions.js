@@ -1,9 +1,8 @@
-const axios = require("axios");
-const htmlparser2 = require("htmlparser2");
-const cheerio = require("cheerio");
-const puppeteer = require("puppeteer");
-const fs = require("fs");
-var DomParser = require("dom-parser");
+const axios = require('axios');
+const htmlparser2 = require('htmlparser2');
+const cheerio = require('cheerio');
+const fs = require('fs');
+var DomParser = require('dom-parser');
 var parser = new DomParser();
 
 const {
@@ -11,8 +10,8 @@ const {
   STEAM_ALL_ACHIEVEMENTS_SCHEMA,
   STEAM_ALL_ACHIEVEMENTS_PLAYER,
   STEAM_ALL_ACHIEVEMENTS_GLOBAL,
-} = require("../config/steamConfig");
-const { writeLog } = require("../utils/fileUtils");
+} = require('../config/steamConfig');
+const { writeLog } = require('../utils/fileUtils');
 
 exports.getAllGamesFromSteam = async () => {
   try {
@@ -24,9 +23,9 @@ exports.getAllGamesFromSteam = async () => {
     return allGames;
   } catch (error) {
     return {
-      status: "fail",
-      point: "[ACTIONS]",
-      message: "Something went wrong while getting games from Steam",
+      status: 'fail',
+      point: '[ACTIONS]',
+      message: 'Something went wrong while getting games from Steam',
       error: error.message,
     };
   }
@@ -38,10 +37,10 @@ exports.getAllSchemaAchievements = async (gameID) => {
     return achievements.data.game.availableGameStats.achievements;
   } catch (error) {
     return {
-      status: "fail",
-      point: "[ACTIONS]",
+      status: 'fail',
+      point: '[ACTIONS]',
       message:
-        "Something went wrong while getting Schema Achievements from Steam",
+        'Something went wrong while getting Schema Achievements from Steam',
       error: error.message,
     };
   }
@@ -55,10 +54,10 @@ exports.getAllPlayerAchievements = async (gameID) => {
     return playerAchievements.data.playerstats.achievements;
   } catch (error) {
     return {
-      status: "fail",
-      point: "[ACTIONS]",
+      status: 'fail',
+      point: '[ACTIONS]',
       message:
-        "Something went wrong while getting Player Achievements from Steam",
+        'Something went wrong while getting Player Achievements from Steam',
       error: error.message,
     };
   }
@@ -72,10 +71,10 @@ exports.getAllGlobalAchievements = async (gameID) => {
     return globalAchievements.data.achievementpercentages.achievements;
   } catch (error) {
     return {
-      status: "fail",
-      point: "[ACTIONS]",
+      status: 'fail',
+      point: '[ACTIONS]',
       message:
-        "Something went wrong while getting Global Achievements from Steam",
+        'Something went wrong while getting Global Achievements from Steam',
       error: error.message,
     };
   }

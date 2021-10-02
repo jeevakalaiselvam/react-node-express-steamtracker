@@ -5,13 +5,13 @@ services:
     build:
       context: ./server
       dockerfile: ./Dockerfile
-    image: 'jeevakalaiselvam/steamtracker-server'
+    image: 'steamtracker-server'
     ports:
       - '8000:8000'
   client:
     build:
       context: ./client
       dockerfile: ./Dockerfile
-    image: 'jeevakalaiselvam/steamtracker-client'
+    image: 'steamtracker-client'
     ports:
       - '3000:3000'
