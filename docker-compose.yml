@@ -15,5 +15,3 @@ services:
     image: 'jeevakalaiselvam/steamtracker-client'
     ports:
       - '3000:3000'
-    links:
-      - 'server:be'
