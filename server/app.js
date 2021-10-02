@@ -64,7 +64,7 @@ app.use('/api', apiRouter);
 app.get('/', (req, res) =>
   res.json({
     status: 'success',
-    data: 'HOMEPAGE - In the Works!',
+    data: 'HOMEPAGE - To Be Completed!',
   })
 );
 
