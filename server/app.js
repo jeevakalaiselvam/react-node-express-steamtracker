@@ -64,7 +64,7 @@ app.use('/api', apiRouter);
 app.get('/', (req, res) =>
   res.json({
     status: 'success',
-    data: 'HOMEPAGE - TO BE BUILT',
+    data: 'HOMEPAGE - In the Works!',
   })
 );
 
@@ -81,5 +81,5 @@ setInterval(() => {
   refreshDatabaseAndStore();
 }, 1000 * 60 * 60);
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => LOG(`Listening on port ${PORT} 👋`));
