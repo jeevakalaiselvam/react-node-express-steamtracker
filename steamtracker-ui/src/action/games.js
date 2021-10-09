@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   COMPLETION_TARGET,
   PAGINATION_TOTAL_COUNT,
@@ -6,7 +6,7 @@ import {
   TARGET_DEFAULT_COMPLETION,
   _STORAGE_READ,
   _STORAGE_WRITE,
-} from "../helper/storage";
+} from '../helper/storage';
 import {
   includePageQuery,
   includeSelectQueryAchievements,
@@ -15,7 +15,7 @@ import {
   includeSortQueryAchievements,
   includeSortQueryAchievementsForGame,
   includeSortQueryGames,
-} from "../helper/queryHelper";
+} from '../helper/queryHelper';
 
 export const fetchGames = async (
   sortOrder,
@@ -25,7 +25,7 @@ export const fetchGames = async (
 ) => {
   let gamesResponse = {};
 
-  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}games?`;
+  const mainURL = `${process.env.REACT_APP_API_BASE_URL}games?`;
   const selectedAddedURL = includeSelectQueryGames(mainURL, selectOrder);
   const sortAddedURL = includeSortQueryGames(selectedAddedURL, sortOrder);
   const pageAddedURL = includePageQuery(sortAddedURL, gamesPage);
@@ -35,12 +35,12 @@ export const fetchGames = async (
 };
 
 export const refreshDatabaseInBackend = async () => {
-  let refreshInfo = "";
+  let refreshInfo = '';
   refreshInfo = (
-    await axios.get(`${process.env.REACT_APP_API_ENDPOINT}refresh`)
+    await axios.get(`${process.env.REACT_APP_API_BASE_URL}refresh`)
   ).data.status;
 
-  if (refreshInfo === "success") {
+  if (refreshInfo === 'success') {
     return true;
   }
 };
@@ -53,7 +53,7 @@ export const fetchAchievements = async (
 ) => {
   let achievementsResponse = {};
 
-  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}achievements?`;
+  const mainURL = `${process.env.REACT_APP_API_BASE_URL}achievements?`;
   const selectedAddedURL = includeSelectQueryAchievements(mainURL, selectOrder);
   const sortAddedURL = includeSortQueryAchievements(
     selectedAddedURL,
@@ -68,7 +68,7 @@ export const fetchAchievements = async (
 export const fetchGamesInfo = async () => {
   let gamesInfo = {};
   gamesInfo = (
-    await axios.get(`${process.env.REACT_APP_API_ENDPOINT}games/info`)
+    await axios.get(`${process.env.REACT_APP_API_BASE_URL}games/info`)
   ).data;
 
   //Store data in local storage
@@ -81,7 +81,7 @@ export const fetchGameInfo = async (gameId) => {
   let gamesInfo = {};
   gamesInfo = (
     await axios.get(
-      `${process.env.REACT_APP_API_ENDPOINT}game/info?gameid=${gameId}`
+      `${process.env.REACT_APP_API_BASE_URL}game/info?gameid=${gameId}`
     )
   ).data;
 
@@ -94,7 +94,7 @@ export const fetchGameInfo = async (gameId) => {
 export const fetchRemainingForGame = async () => {
   let gamesInfo = {};
   gamesInfo = (
-    await axios.get(`${process.env.REACT_APP_API_ENDPOINT}games/info`)
+    await axios.get(`${process.env.REACT_APP_API_BASE_URL}games/info`)
   ).data;
 
   //Store data in local storage
@@ -111,7 +111,7 @@ export const fetchAchievementsBacklog = async (
 ) => {
   let achievementsResponse = {};
 
-  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}backlog?target=${
+  const mainURL = `${process.env.REACT_APP_API_BASE_URL}backlog?target=${
     _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
   }&`;
   const selectedAddedURL = includeSelectQueryAchievements(mainURL, selectOrder);
@@ -143,7 +143,7 @@ export const fetchAchievementsBacklog = async (
 export const fetchAchievementsNext = async (achievementPage) => {
   let achievementsResponse = {};
 
-  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}next?`;
+  const mainURL = `${process.env.REACT_APP_API_BASE_URL}next?`;
   const pageAddedURL = includePageQuery(mainURL, achievementPage);
   achievementsResponse = (await axios.get(pageAddedURL)).data;
   _STORAGE_WRITE(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
@@ -155,7 +155,7 @@ export const fetchGameRandom = async (force = false) => {
   let gameResponse = {};
 
   const mainURL = `${
-    process.env.REACT_APP_API_ENDPOINT
+    process.env.REACT_APP_API_BASE_URL
   }random?force=${force}&target=${_STORAGE_READ(COMPLETION_TARGET)}`;
   console.log(mainURL);
   gameResponse = (await axios.get(mainURL)).data;
@@ -172,7 +172,7 @@ export const fetchAchievementsForGame = async (
 ) => {
   let achievementsResponse = {};
 
-  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}achievements/game?game=${gameId}&`;
+  const mainURL = `${process.env.REACT_APP_API_BASE_URL}achievements/game?game=${gameId}&`;
 
   const selectedAddedURL = includeSelectQueryAchievementsForGame(
     mainURL,
@@ -188,7 +188,7 @@ export const fetchAchievementsForGame = async (
 
   const hiddenAchievements = (
     await axios.get(
-      `${process.env.REACT_APP_API_ENDPOINT}achievements/hidden?gameid=${gameId}`
+      `${process.env.REACT_APP_API_BASE_URL}achievements/hidden?gameid=${gameId}`
     )
   ).data;
 
@@ -219,7 +219,7 @@ export const fetchOverlayImages = async (
 ) => {
   const allImages = (
     await axios.get(
-      `${process.env.REACT_APP_API_ENDPOINT}overlay?perfectgames=${perfectGamesCount}&games=${gamesCount}&achievements=${achievementCount}`
+      `${process.env.REACT_APP_API_BASE_URL}overlay?perfectgames=${perfectGamesCount}&games=${gamesCount}&achievements=${achievementCount}`
     )
   ).data;
   return allImages;
@@ -228,7 +228,7 @@ export const fetchOverlayImages = async (
 export const fetAchievementsForYearRecentSorted = async (year) => {
   const allAchievementsForYear = (
     await axios.get(
-      `${process.env.REACT_APP_API_ENDPOINT}achievements/history?year=${year}`
+      `${process.env.REACT_APP_API_BASE_URL}achievements/history?year=${year}`
     )
   ).data;
 
@@ -238,7 +238,7 @@ export const fetAchievementsForYearRecentSorted = async (year) => {
 export const fetchAchievementMilestones = async (year) => {
   const achievementsMilestones = (
     await axios.get(
-      `${process.env.REACT_APP_API_ENDPOINT}achievements/milestones`
+      `${process.env.REACT_APP_API_BASE_URL}achievements/milestones`
     )
   ).data;
 

@@ -27,7 +27,11 @@ dotenv.config();
 app.use(compression());
 app.enable('trust proxy');
 app.options('*', cors());
-app.use(cors());
+const corsOptions = {
+  origin: process.env.CLIENT_ORIGIN || 'http://localhost:6868',
+};
+
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -81,5 +85,5 @@ setInterval(() => {
   refreshDatabaseAndStore();
 }, 1000 * 60 * 60);
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, () => LOG(`Listening on port ${PORT} 👋`));

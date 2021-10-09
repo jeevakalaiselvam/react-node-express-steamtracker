@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import styled from "styled-components";
-import Page from "../components/core/Page";
-import Header from "../components/core/Header";
-import AllPageLeft from "../sidebar/AllPageLeft";
-import GamesPageRight from "../sidebar/GamesPageRight";
-import GamesContent from "../content/GamesContent";
-import { useState } from "react";
-import { fetchGames } from "../action/games";
-import { GameContext } from "../context/GameContext";
+import React, { useContext, useEffect } from 'react';
+import styled from 'styled-components';
+import Page from '../components/core/Page';
+import Header from '../components/core/Header';
+import AllPageLeft from '../sidebar/AllPageLeft';
+import GamesPageRight from '../sidebar/GamesPageRight';
+import GamesContent from '../content/GamesContent';
+import { useState } from 'react';
+import { fetchGames } from '../action/games';
+import { GameContext } from '../context/GameContext';
 import {
   CURRENT_PAGE,
   GAMEPAGE_SELECT,
@@ -17,8 +17,8 @@ import {
   PAGINATION_TOTAL_COUNT,
   _STORAGE_READ,
   _STORAGE_WRITE,
-} from "../helper/storage";
-import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
+} from '../helper/storage';
+import { PAGINATION_GAMES_PER_PAGE } from '../helper/pagination';
 
 const PageContainer = styled.div`
   display: flex;
@@ -125,8 +125,8 @@ export default function Games() {
             moveToPageLeft={moveToPageLeftHandler}
           />
         }
-        leftSidebarWidth={"180px"}
-        rightSidebarWidth={"180px"}
+        leftSidebarWidth={'180px'}
+        rightSidebarWidth={'180px'}
         loading={loading}
       />
     </PageContainer>
