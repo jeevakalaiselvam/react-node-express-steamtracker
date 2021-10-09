@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 dotenv.config();
 
 exports.STEAM_ALL_GAMES_URL = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.STEAM_API_KEY}&steamid=${process.env.STEAM_USER_ID}&format={{RES_FORMAT}}&include_appinfo=true`;

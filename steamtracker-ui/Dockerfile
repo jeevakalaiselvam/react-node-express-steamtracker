@@ -15,6 +15,8 @@ RUN npm run build
 FROM nginx:1.17.0-alpine
 
 COPY --from=build-stage /steamtracker-ui/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /steamtracker-ui/conf/nginx.conf /etc/nginx/conf.d
 EXPOSE $REACT_DOCKER_PORT
 
 CMD nginx -g 'daemon off;'
